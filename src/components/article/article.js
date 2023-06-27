@@ -87,8 +87,64 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Full Stack Web Learning in Full Swing',
+    date: 'Mar 5th, 2023',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
+
+function articleMaker(articleObject) {
+  const articleWrap = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articlePOne = document.createElement('p');
+  const articlePTwo = document.createElement('p');
+  const articlePThree = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  articleWrap.classList.add('article');
+  articleDate.classList.add('date');
+  expandButton.classList.add('expandButton');
+
+  articleWrap.appendChild(articleTitle);
+  articleWrap.appendChild(articleDate);
+  articleWrap.appendChild(articlePOne);
+  articleWrap.appendChild(articlePTwo);
+  articleWrap.appendChild(articlePThree);
+  articleWrap.appendChild(expandButton);
+
+  articleTitle.textContent = articleObject.title;
+  articleDate.textContent = articleObject.date;
+  articlePOne.textContent = articleObject.firstParagraph;
+  articlePTwo.textContent = articleObject.secondParagraph;
+  articlePThree.textContent = articleObject.thirdParagraph;
+  expandButton.textContent = '+';
+
+  expandButton.addEventListener('click', () => {
+    articleWrap.classList.toggle('article-open');
+  })
+
+  return articleWrap;
+}
+
+data.forEach(article => {
+  const articleWrap = document.querySelector('div.articles');
+  const articleList = articleMaker(article);
+  articleWrap.appendChild(articleList);
+})
 
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
